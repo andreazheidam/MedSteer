@@ -67,10 +67,11 @@ Target-prompt pixel AUROC:
   every control prompt. On AUPRC, BRISC prefers the target over all four controls, Kvasir-SEG
   mainly over the wrong-medical prompt, BUSI and ISIC show essentially none
   (`results/tables/specificity_gains_auprc_wide.csv`).
-* SAM3 follows the named organ or tissue ("brain tumor" selects the brain); absent concepts fall
-  back to the salient lesion.
+* SAM3 follows the named organ or tissue ("brain tumor" selects the brain); absent concepts fall back to the salient lesion.
 * MedSAM3 localizes best but is essentially prompt-invariant (specificity gaps ≈ 0). Its training
   data likely include these public datasets.
+* CLIP and BiomedCLIP do not localize the lesion (target-prompt AUROC 0.28-0.69). BiomedCLIP
+     shows larger target-versus-control gaps than CLIP, but because its control maps are inverted (they highlight the background), not because the target map finds the lesion.
 
 ## Repository layout
 
