@@ -68,9 +68,20 @@ COLS = {
     "med_target": ("MedSAM3 map", "target", "medsam3", "native", "pathology", "native", "magma"),
     "med_cat":   ("MedSAM3 map", "cat", "medsam3", "native", "irrelevant_cat", "native", "magma"),
     "med_wrong": ("MedSAM3 map", "wrong-medical", "medsam3", "native", "wrong_medical", "native", "magma"),
+    "clip_target": ("CLIP map", "target", "clip", "native", "pathology", "native", "magma"),
+    "clip_cat":  ("CLIP map", "cat", "clip", "native", "irrelevant_cat", "native", "magma"),
+    "clip_wrong": ("CLIP map", "wrong-medical", "clip", "native", "wrong_medical", "native", "magma"),
+    "bmc_target": ("BiomedCLIP map", "target", "biomedclip", "native", "pathology", "native", "magma"),
+    "bmc_cat":   ("BiomedCLIP map", "cat", "biomedclip", "native", "irrelevant_cat", "native", "magma"),
+    "bmc_wrong": ("BiomedCLIP map", "wrong-medical", "biomedclip", "native", "wrong_medical", "native", "magma"),
 }
-DEFAULT_COLS = ["img", "sv_target", "sv_cat", "sv_wrong", "sv_dse", "sv_srm", "sam_target", "sam_cat",
-                "sam_wrong", "med_target", "med_cat", "med_wrong"]
+# all five models, target vs wrong-medical prompt (13 columns); the 12-column three-prompt layout of
+# the earlier version: --cols img sv_target sv_cat sv_wrong sv_dse sv_srm sam_target sam_cat sam_wrong
+#                             med_target med_cat med_wrong
+DEFAULT_COLS = ["img", "sv_target", "sv_wrong", "sv_dse", "sv_srm", "clip_target", "clip_wrong",
+                "bmc_target", "bmc_wrong", "sam_target", "sam_wrong", "med_target", "med_wrong"]
+GROUP_SHORT = {"SteerViT map": "SteerViT", "SteerViT representation": "SteerViT features", "CLIP map": "CLIP",
+               "BiomedCLIP map": "BiomedCLIP", "SAM3 map": "SAM3", "MedSAM3 map": "MedSAM3"}
 GT_LIGHT, GT_DARK, GT_IMG = "white", "black", "#2BD99F"
 
 
@@ -98,6 +109,8 @@ def main():
     ap.add_argument("--steervit", default="runs_final2/gate1")
     ap.add_argument("--sam3", default="runs_final2_compare/sam3/gate1")
     ap.add_argument("--medsam3", default="runs_final2_compare/medsam3/gate1")
+    ap.add_argument("--clip", default="runs_final2_compare/clip/gate1")
+    ap.add_argument("--biomedclip", default="runs_final2_compare/biomedclip/gate1")
     ap.add_argument("--cols", nargs="*", default=DEFAULT_COLS, choices=list(COLS))
     ap.add_argument("--cases", nargs="*", default=[], help="dataset=case_id overrides")
     ap.add_argument("--auto", action="store_true", help="pick median-like cases instead of defaults")
@@ -110,7 +123,8 @@ def main():
     import yaml
     cfg = yaml.safe_load(Path(a.config).read_text())["datasets"]
     texts = {ds: {p["id"]: p["text"] for p in cfg[ds]["prompts"]} for ds, _ in DATASETS}
-    runs = {"steervit": Path(a.steervit), "sam3": Path(a.sam3), "medsam3": Path(a.medsam3)}
+    runs = {"steervit": Path(a.steervit), "sam3": Path(a.sam3), "medsam3": Path(a.medsam3),
+            "clip": Path(a.clip), "biomedclip": Path(a.biomedclip)}
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     if a.panels:
         (out / "panels").mkdir(exist_ok=True)
@@ -208,7 +222,9 @@ def main():
         x1 = gs[0, c1].get_position(fig).x1 - 0.004
         fig.add_artist(plt.Line2D([x0, x1], [ytop - 0.012, ytop - 0.012], transform=fig.transFigure,
                                   lw=0.6, color="black"))
-        fig.text((x0 + x1) / 2, ytop, g, ha="center", va="bottom", fontsize=7, fontweight="bold")
+        gname = GROUP_SHORT.get(g, g) if (compact or c1 - c0 < 2) else g
+        fig.text((x0 + x1) / 2, ytop, gname, ha="center", va="bottom", fontsize=6.5 if compact else 7,
+                 fontweight="bold")
     for ext in ("pdf", "svg", "png"):
         fig.savefig(out / f"fig1.{ext}", dpi=300 if ext == "png" else None)
     plt.close(fig)

@@ -1,0 +1,4 @@
+brisc=brisc_brisc2025_test_00471_me_co_t1
+busi=busi_benign_79
+kvasir=kvasir_cjyzu3reghjya0794w7pwoi50
+isic=isic_isic_0018774
