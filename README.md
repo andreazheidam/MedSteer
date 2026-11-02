@@ -60,6 +60,7 @@ Target-prompt pixel AUROC:
 | SteerViT DSE | 0.829 | 0.872 | 0.855 | 0.718 |
 | SteerViT SRM | 0.050 | 0.096 | 0.178 | 0.050 |
 | CLIP map | 0.540 | 0.379 | 0.532 | 0.691 |
+| BiomedCLIP map | 0.282 | 0.406 | 0.518 | 0.421 |
 | SAM3 map | 0.736 | 0.977 | 0.979 | 0.898 |
 | MedSAM3 map | 0.994 | 0.998 | 0.999 | 0.999 |
 
