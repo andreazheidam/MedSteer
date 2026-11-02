@@ -17,6 +17,22 @@ ground-truth mask. Nothing is trained: all models are used as released.
 | SAM3 (`facebook/sam3`) | concept-prompted segmentation | text | `semantic_seg` logits |
 | MedSAM3 (SAM3 + medical LoRA v1) | medical concept-prompted segmentation | text | `semantic_seg` logits |
 
+### Model sources
+
+All models are used as released, without any training or fine-tuning by us.
+
+| Model | Weights | Code / library | Reference |
+|---|---|---|---|
+| SteerViT (SteerDINOv2-Base) | `steervit_dinov2_base.pth`, Hugging Face `JonaRuthardt/SteerViT` | official package, github.com/JonaRuthardt/SteerViT | Ruthardt et al., arXiv:2604.02327 |
+| DINOv2 ViT-B/14 | frozen backbone inside SteerViT (`texts=None`) | via SteerViT / timm | Oquab et al., TMLR 2024 |
+| CLIP ViT-B/16 | Hugging Face `openai/clip-vit-base-patch16` | `transformers` | Radford et al., ICML 2021 |
+| BiomedCLIP | Hugging Face `microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224` | `open_clip` (+ `timm`) | Zhang et al., arXiv:2303.00915 |
+| SAM3 | Hugging Face `facebook/sam3` (gated: accept the license on Hugging Face) | `transformers` 5.21.0 (`Sam3Model`) | Carion et al., ICLR 2026 |
+| MedSAM3 v1 | base `facebook/sam3` (`sam3.pt`) + LoRA `lal-Joey/MedSAM3_v1` (`best_lora_weights.pt`, 916 tensors) | github.com/Joey-S-Liu/MedSAM3 (commit `84f4311`), `configs/full_lora_config.yaml` | Liu et al., arXiv:2511.19046 |
+
+Exact package versions: `envs/`. Per-run model identifiers, prompt hashes and loading checks:
+`results/runs/<model>/<dataset>/meta.json`.
+
 ## Datasets and prompts
 
 BRISC 2025 (brain MRI, official test split), BUSI (breast ultrasound, all images), Kvasir-SEG
