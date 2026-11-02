@@ -1,0 +1,50 @@
+# MedSteer FINAL prompt set (supervisor feedback, 2026-10-22). FROZEN: do not edit after the
+# final runs start. The exact strings below are sent verbatim to every model (SteerViT, CLIP,
+# SAM3); no article, no template, no per-image or per-dataset tuning. Its hash is written into
+# every output folder. Prompt-robustness (synonyms) would be a separate experiment.
+#
+# Categories:  anatomy = surrounding anatomical context, pathology = the segmentation target,
+#              irrelevant = two unrelated controls (cat, car), averaged in G_irrel.
+# Prompt ids are kept from the earlier config so evaluate.py / analyses work unchanged.
+
+model:
+  checkpoint: steervit_dinov2_base.pth   # official release (HF: JonaRuthardt/SteerViT)
+  gate: 1.0
+  batch_size: 32
+  dtype: float32
+
+datasets:
+  brisc:
+    reference: irrelevant_cat
+    prompts:
+      - {id: anatomy,        text: "brain tissue",  category: anatomy}
+      - {id: pathology,      text: "brain tumor",   category: pathology}
+      - {id: irrelevant_cat, text: "cat",           category: irrelevant}
+      - {id: irrelevant_car, text: "car",           category: irrelevant}
+  busi:
+    reference: irrelevant_cat
+    prompts:
+      - {id: anatomy,        text: "breast tissue", category: anatomy}
+      - {id: pathology,      text: "breast lesion", category: pathology}
+      - {id: irrelevant_cat, text: "cat",           category: irrelevant}
+      - {id: irrelevant_car, text: "car",           category: irrelevant}
+  kvasir:
+    reference: irrelevant_cat
+    prompts:
+      - {id: anatomy,        text: "colon mucosa",  category: anatomy}
+      - {id: pathology,      text: "colon polyp",   category: pathology}
+      - {id: irrelevant_cat, text: "cat",           category: irrelevant}
+      - {id: irrelevant_car, text: "car",           category: irrelevant}
+  isic:
+    reference: irrelevant_cat
+    prompts:
+      - {id: anatomy,        text: "skin",          category: anatomy}
+      - {id: pathology,      text: "skin lesion",   category: pathology}
+      - {id: irrelevant_cat, text: "cat",           category: irrelevant}
+      - {id: irrelevant_car, text: "car",           category: irrelevant}
+
+analysis:
+  patch_threshold: 0.5
+  size_bins: 3
+  main_map: csr_abs
+  null_permutations: 1

@@ -1,0 +1,216 @@
+% supplementary: Wilcoxon vs 0, Holm per dataset. Nominal only: images are not
+% independent (no patient IDs, near duplicates in BUSI), so these are optimistic.
+\begin{tabular}{llllrll}
+\toprule
+dataset & model & map & gain & n & p & p_holm \\
+\midrule
+brisc & SteerViT & prompted map & R_cat & 860 & $<$0.001 & $<$0.001 \\
+brisc & SteerViT & prompted map & R_context & 860 & $<$0.001 & $<$0.001 \\
+brisc & SteerViT & prompted map & R_wrong & 860 & $<$0.001 & $<$0.001 \\
+brisc & SteerViT & prompted map & R_cf & 860 & $<$0.001 & $<$0.001 \\
+brisc & SteerViT & DSE  w^T dF & R_cat & 860 & $<$0.001 & $<$0.001 \\
+brisc & SteerViT & DSE  w^T dF & R_context & 860 & $<$0.001 & $<$0.001 \\
+brisc & SteerViT & DSE  w^T dF & R_wrong & 860 & $<$0.001 & $<$0.001 \\
+brisc & SteerViT & DSE  w^T dF & R_cf & 860 & $<$0.001 & $<$0.001 \\
+brisc & SteerViT & CSR  ||dF|| & R_cat & 860 & $<$0.001 & $<$0.001 \\
+brisc & SteerViT & CSR  ||dF|| & R_context & 860 & $<$0.001 & 0.003 \\
+brisc & SteerViT & CSR  ||dF|| & R_wrong & 860 & $<$0.001 & $<$0.001 \\
+brisc & SteerViT & CSR  ||dF|| & R_cf & 860 & $<$0.001 & $<$0.001 \\
+brisc & CLIP & prompted map & R_cat & 860 & 0.019 & 0.082 \\
+brisc & CLIP & prompted map & R_context & 860 & $<$0.001 & $<$0.001 \\
+brisc & CLIP & prompted map & R_wrong & 860 & 0.016 & 0.082 \\
+brisc & CLIP & prompted map & R_cf & 860 & 0.335 & 0.671 \\
+brisc & CLIP & output shift & R_cat & 860 & $<$0.001 & $<$0.001 \\
+brisc & CLIP & output shift & R_context & 860 & $<$0.001 & $<$0.001 \\
+brisc & CLIP & output shift & R_wrong & 860 & $<$0.001 & $<$0.001 \\
+brisc & CLIP & output shift & R_cf & 860 & 0.450 & 0.671 \\
+brisc & BiomedCLIP & prompted map & R_cat & 860 & $<$0.001 & $<$0.001 \\
+brisc & BiomedCLIP & prompted map & R_context & 860 & $<$0.001 & $<$0.001 \\
+brisc & BiomedCLIP & prompted map & R_wrong & 860 & $<$0.001 & $<$0.001 \\
+brisc & BiomedCLIP & prompted map & R_cf & 860 & $<$0.001 & $<$0.001 \\
+brisc & BiomedCLIP & output shift & R_cat & 860 & $<$0.001 & $<$0.001 \\
+brisc & BiomedCLIP & output shift & R_context & 860 & $<$0.001 & $<$0.001 \\
+brisc & BiomedCLIP & output shift & R_wrong & 860 & $<$0.001 & $<$0.001 \\
+brisc & BiomedCLIP & output shift & R_cf & 860 & $<$0.001 & $<$0.001 \\
+brisc & SAM3 & prompted map & R_cat & 860 & $<$0.001 & $<$0.001 \\
+brisc & SAM3 & prompted map & R_context & 860 & $<$0.001 & $<$0.001 \\
+brisc & SAM3 & prompted map & R_wrong & 860 & $<$0.001 & $<$0.001 \\
+brisc & SAM3 & prompted map & R_cf & 860 & $<$0.001 & $<$0.001 \\
+brisc & SAM3 & output shift & R_cat & 860 & $<$0.001 & $<$0.001 \\
+brisc & SAM3 & output shift & R_context & 860 & $<$0.001 & $<$0.001 \\
+brisc & SAM3 & output shift & R_wrong & 860 & $<$0.001 & $<$0.001 \\
+brisc & SAM3 & output shift & R_cf & 860 & $<$0.001 & $<$0.001 \\
+brisc & SAM3 & CSR  ||dF|| & R_cat & 860 & $<$0.001 & $<$0.001 \\
+brisc & SAM3 & CSR  ||dF|| & R_context & 860 & $<$0.001 & $<$0.001 \\
+brisc & SAM3 & CSR  ||dF|| & R_wrong & 860 & $<$0.001 & $<$0.001 \\
+brisc & SAM3 & CSR  ||dF|| & R_cf & 860 & $<$0.001 & $<$0.001 \\
+brisc & MedSAM3 & prompted map & R_cat & 860 & $<$0.001 & $<$0.001 \\
+brisc & MedSAM3 & prompted map & R_context & 860 & $<$0.001 & $<$0.001 \\
+brisc & MedSAM3 & prompted map & R_wrong & 860 & $<$0.001 & $<$0.001 \\
+brisc & MedSAM3 & prompted map & R_cf & 860 & $<$0.001 & 0.003 \\
+brisc & MedSAM3 & output shift & R_cat & 860 & $<$0.001 & $<$0.001 \\
+brisc & MedSAM3 & output shift & R_context & 860 & $<$0.001 & $<$0.001 \\
+brisc & MedSAM3 & output shift & R_wrong & 860 & 0.003 & 0.024 \\
+brisc & MedSAM3 & output shift & R_cf & 860 & 0.065 & 0.195 \\
+brisc & MedSAM3 & CSR  ||dF|| & R_cat & 860 & $<$0.001 & $<$0.001 \\
+brisc & MedSAM3 & CSR  ||dF|| & R_context & 860 & 0.005 & 0.031 \\
+brisc & MedSAM3 & CSR  ||dF|| & R_wrong & 860 & 0.002 & 0.019 \\
+brisc & MedSAM3 & CSR  ||dF|| & R_cf & 860 & $<$0.001 & $<$0.001 \\
+busi & SteerViT & prompted map & R_cat & 647 & 0.587 & 0.970 \\
+busi & SteerViT & prompted map & R_context & 647 & 0.120 & 0.720 \\
+busi & SteerViT & prompted map & R_wrong & 647 & 0.003 & 0.026 \\
+busi & SteerViT & prompted map & R_cf & 647 & $<$0.001 & $<$0.001 \\
+busi & SteerViT & DSE  w^T dF & R_cat & 647 & $<$0.001 & $<$0.001 \\
+busi & SteerViT & DSE  w^T dF & R_context & 647 & $<$0.001 & $<$0.001 \\
+busi & SteerViT & DSE  w^T dF & R_wrong & 647 & $<$0.001 & $<$0.001 \\
+busi & SteerViT & DSE  w^T dF & R_cf & 647 & $<$0.001 & $<$0.001 \\
+busi & SteerViT & CSR  ||dF|| & R_cat & 647 & $<$0.001 & $<$0.001 \\
+busi & SteerViT & CSR  ||dF|| & R_context & 647 & $<$0.001 & $<$0.001 \\
+busi & SteerViT & CSR  ||dF|| & R_wrong & 647 & $<$0.001 & $<$0.001 \\
+busi & SteerViT & CSR  ||dF|| & R_cf & 647 & $<$0.001 & 0.001 \\
+busi & CLIP & prompted map & R_cat & 647 & $<$0.001 & $<$0.001 \\
+busi & CLIP & prompted map & R_context & 647 & $<$0.001 & $<$0.001 \\
+busi & CLIP & prompted map & R_wrong & 647 & $<$0.001 & $<$0.001 \\
+busi & CLIP & prompted map & R_cf & 647 & $<$0.001 & $<$0.001 \\
+busi & CLIP & output shift & R_cat & 647 & $<$0.001 & $<$0.001 \\
+busi & CLIP & output shift & R_context & 647 & $<$0.001 & $<$0.001 \\
+busi & CLIP & output shift & R_wrong & 647 & $<$0.001 & $<$0.001 \\
+busi & CLIP & output shift & R_cf & 647 & $<$0.001 & $<$0.001 \\
+busi & BiomedCLIP & prompted map & R_cat & 647 & $<$0.001 & $<$0.001 \\
+busi & BiomedCLIP & prompted map & R_context & 647 & $<$0.001 & $<$0.001 \\
+busi & BiomedCLIP & prompted map & R_wrong & 647 & $<$0.001 & $<$0.001 \\
+busi & BiomedCLIP & prompted map & R_cf & 647 & $<$0.001 & $<$0.001 \\
+busi & BiomedCLIP & output shift & R_cat & 647 & $<$0.001 & $<$0.001 \\
+busi & BiomedCLIP & output shift & R_context & 647 & $<$0.001 & $<$0.001 \\
+busi & BiomedCLIP & output shift & R_wrong & 647 & 0.286 & 0.970 \\
+busi & BiomedCLIP & output shift & R_cf & 647 & $<$0.001 & $<$0.001 \\
+busi & SAM3 & prompted map & R_cat & 647 & $<$0.001 & $<$0.001 \\
+busi & SAM3 & prompted map & R_context & 647 & $<$0.001 & $<$0.001 \\
+busi & SAM3 & prompted map & R_wrong & 647 & 0.028 & 0.197 \\
+busi & SAM3 & prompted map & R_cf & 647 & $<$0.001 & $<$0.001 \\
+busi & SAM3 & output shift & R_cat & 647 & $<$0.001 & $<$0.001 \\
+busi & SAM3 & output shift & R_context & 647 & $<$0.001 & $<$0.001 \\
+busi & SAM3 & output shift & R_wrong & 647 & 0.298 & 0.970 \\
+busi & SAM3 & output shift & R_cf & 647 & $<$0.001 & $<$0.001 \\
+busi & SAM3 & CSR  ||dF|| & R_cat & 647 & $<$0.001 & $<$0.001 \\
+busi & SAM3 & CSR  ||dF|| & R_context & 647 & 0.002 & 0.019 \\
+busi & SAM3 & CSR  ||dF|| & R_wrong & 647 & $<$0.001 & $<$0.001 \\
+busi & SAM3 & CSR  ||dF|| & R_cf & 647 & $<$0.001 & $<$0.001 \\
+busi & MedSAM3 & prompted map & R_cat & 647 & $<$0.001 & $<$0.001 \\
+busi & MedSAM3 & prompted map & R_context & 647 & $<$0.001 & $<$0.001 \\
+busi & MedSAM3 & prompted map & R_wrong & 647 & $<$0.001 & $<$0.001 \\
+busi & MedSAM3 & prompted map & R_cf & 647 & $<$0.001 & $<$0.001 \\
+busi & MedSAM3 & output shift & R_cat & 647 & $<$0.001 & $<$0.001 \\
+busi & MedSAM3 & output shift & R_context & 647 & 0.177 & 0.886 \\
+busi & MedSAM3 & output shift & R_wrong & 647 & $<$0.001 & $<$0.001 \\
+busi & MedSAM3 & output shift & R_cf & 647 & $<$0.001 & $<$0.001 \\
+busi & MedSAM3 & CSR  ||dF|| & R_cat & 647 & $<$0.001 & $<$0.001 \\
+busi & MedSAM3 & CSR  ||dF|| & R_context & 647 & $<$0.001 & $<$0.001 \\
+busi & MedSAM3 & CSR  ||dF|| & R_wrong & 647 & $<$0.001 & $<$0.001 \\
+busi & MedSAM3 & CSR  ||dF|| & R_cf & 647 & 0.243 & 0.970 \\
+kvasir & SteerViT & prompted map & R_cat & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SteerViT & prompted map & R_context & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SteerViT & prompted map & R_wrong & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SteerViT & prompted map & R_cf & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SteerViT & DSE  w^T dF & R_cat & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SteerViT & DSE  w^T dF & R_context & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SteerViT & DSE  w^T dF & R_wrong & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SteerViT & DSE  w^T dF & R_cf & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SteerViT & CSR  ||dF|| & R_cat & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SteerViT & CSR  ||dF|| & R_context & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SteerViT & CSR  ||dF|| & R_wrong & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SteerViT & CSR  ||dF|| & R_cf & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & CLIP & prompted map & R_cat & 1000 & 0.003 & 0.014 \\
+kvasir & CLIP & prompted map & R_context & 1000 & 0.611 & 0.611 \\
+kvasir & CLIP & prompted map & R_wrong & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & CLIP & prompted map & R_cf & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & CLIP & output shift & R_cat & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & CLIP & output shift & R_context & 1000 & 0.010 & 0.031 \\
+kvasir & CLIP & output shift & R_wrong & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & CLIP & output shift & R_cf & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & BiomedCLIP & prompted map & R_cat & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & BiomedCLIP & prompted map & R_context & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & BiomedCLIP & prompted map & R_wrong & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & BiomedCLIP & prompted map & R_cf & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & BiomedCLIP & output shift & R_cat & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & BiomedCLIP & output shift & R_context & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & BiomedCLIP & output shift & R_wrong & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & BiomedCLIP & output shift & R_cf & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SAM3 & prompted map & R_cat & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SAM3 & prompted map & R_context & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SAM3 & prompted map & R_wrong & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SAM3 & prompted map & R_cf & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SAM3 & output shift & R_cat & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SAM3 & output shift & R_context & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SAM3 & output shift & R_wrong & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SAM3 & output shift & R_cf & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SAM3 & CSR  ||dF|| & R_cat & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SAM3 & CSR  ||dF|| & R_context & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SAM3 & CSR  ||dF|| & R_wrong & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & SAM3 & CSR  ||dF|| & R_cf & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & MedSAM3 & prompted map & R_cat & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & MedSAM3 & prompted map & R_context & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & MedSAM3 & prompted map & R_wrong & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & MedSAM3 & prompted map & R_cf & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & MedSAM3 & output shift & R_cat & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & MedSAM3 & output shift & R_context & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & MedSAM3 & output shift & R_wrong & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & MedSAM3 & output shift & R_cf & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & MedSAM3 & CSR  ||dF|| & R_cat & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & MedSAM3 & CSR  ||dF|| & R_context & 1000 & 0.014 & 0.031 \\
+kvasir & MedSAM3 & CSR  ||dF|| & R_wrong & 1000 & $<$0.001 & $<$0.001 \\
+kvasir & MedSAM3 & CSR  ||dF|| & R_cf & 1000 & $<$0.001 & $<$0.001 \\
+isic & SteerViT & prompted map & R_cat & 998 & $<$0.001 & $<$0.001 \\
+isic & SteerViT & prompted map & R_context & 998 & $<$0.001 & 0.004 \\
+isic & SteerViT & prompted map & R_wrong & 998 & $<$0.001 & $<$0.001 \\
+isic & SteerViT & prompted map & R_cf & 998 & $<$0.001 & $<$0.001 \\
+isic & SteerViT & DSE  w^T dF & R_cat & 998 & 0.259 & 1.000 \\
+isic & SteerViT & DSE  w^T dF & R_context & 998 & $<$0.001 & $<$0.001 \\
+isic & SteerViT & DSE  w^T dF & R_wrong & 998 & $<$0.001 & $<$0.001 \\
+isic & SteerViT & DSE  w^T dF & R_cf & 998 & $<$0.001 & $<$0.001 \\
+isic & SteerViT & CSR  ||dF|| & R_cat & 998 & 0.008 & 0.066 \\
+isic & SteerViT & CSR  ||dF|| & R_context & 998 & $<$0.001 & $<$0.001 \\
+isic & SteerViT & CSR  ||dF|| & R_wrong & 998 & $<$0.001 & $<$0.001 \\
+isic & SteerViT & CSR  ||dF|| & R_cf & 998 & $<$0.001 & $<$0.001 \\
+isic & CLIP & prompted map & R_cat & 998 & $<$0.001 & $<$0.001 \\
+isic & CLIP & prompted map & R_context & 998 & $<$0.001 & $<$0.001 \\
+isic & CLIP & prompted map & R_wrong & 998 & $<$0.001 & $<$0.001 \\
+isic & CLIP & prompted map & R_cf & 998 & $<$0.001 & $<$0.001 \\
+isic & CLIP & output shift & R_cat & 998 & $<$0.001 & $<$0.001 \\
+isic & CLIP & output shift & R_context & 998 & $<$0.001 & $<$0.001 \\
+isic & CLIP & output shift & R_wrong & 998 & $<$0.001 & $<$0.001 \\
+isic & CLIP & output shift & R_cf & 998 & $<$0.001 & $<$0.001 \\
+isic & BiomedCLIP & prompted map & R_cat & 998 & $<$0.001 & $<$0.001 \\
+isic & BiomedCLIP & prompted map & R_context & 998 & $<$0.001 & $<$0.001 \\
+isic & BiomedCLIP & prompted map & R_wrong & 998 & 0.037 & 0.262 \\
+isic & BiomedCLIP & prompted map & R_cf & 998 & $<$0.001 & $<$0.001 \\
+isic & BiomedCLIP & output shift & R_cat & 998 & $<$0.001 & $<$0.001 \\
+isic & BiomedCLIP & output shift & R_context & 998 & $<$0.001 & $<$0.001 \\
+isic & BiomedCLIP & output shift & R_wrong & 998 & $<$0.001 & $<$0.001 \\
+isic & BiomedCLIP & output shift & R_cf & 998 & $<$0.001 & $<$0.001 \\
+isic & SAM3 & prompted map & R_cat & 998 & $<$0.001 & $<$0.001 \\
+isic & SAM3 & prompted map & R_context & 998 & $<$0.001 & $<$0.001 \\
+isic & SAM3 & prompted map & R_wrong & 998 & $<$0.001 & $<$0.001 \\
+isic & SAM3 & prompted map & R_cf & 998 & $<$0.001 & $<$0.001 \\
+isic & SAM3 & output shift & R_cat & 998 & 0.299 & 1.000 \\
+isic & SAM3 & output shift & R_context & 998 & $<$0.001 & $<$0.001 \\
+isic & SAM3 & output shift & R_wrong & 998 & $<$0.001 & $<$0.001 \\
+isic & SAM3 & output shift & R_cf & 998 & $<$0.001 & $<$0.001 \\
+isic & SAM3 & CSR  ||dF|| & R_cat & 998 & $<$0.001 & $<$0.001 \\
+isic & SAM3 & CSR  ||dF|| & R_context & 998 & $<$0.001 & $<$0.001 \\
+isic & SAM3 & CSR  ||dF|| & R_wrong & 998 & $<$0.001 & $<$0.001 \\
+isic & SAM3 & CSR  ||dF|| & R_cf & 998 & $<$0.001 & $<$0.001 \\
+isic & MedSAM3 & prompted map & R_cat & 998 & 0.121 & 0.726 \\
+isic & MedSAM3 & prompted map & R_context & 998 & 0.672 & 1.000 \\
+isic & MedSAM3 & prompted map & R_wrong & 998 & 0.834 & 1.000 \\
+isic & MedSAM3 & prompted map & R_cf & 998 & $<$0.001 & $<$0.001 \\
+isic & MedSAM3 & output shift & R_cat & 998 & $<$0.001 & 0.001 \\
+isic & MedSAM3 & output shift & R_context & 998 & $<$0.001 & $<$0.001 \\
+isic & MedSAM3 & output shift & R_wrong & 998 & $<$0.001 & $<$0.001 \\
+isic & MedSAM3 & output shift & R_cf & 998 & $<$0.001 & $<$0.001 \\
+isic & MedSAM3 & CSR  ||dF|| & R_cat & 998 & $<$0.001 & $<$0.001 \\
+isic & MedSAM3 & CSR  ||dF|| & R_context & 998 & 0.953 & 1.000 \\
+isic & MedSAM3 & CSR  ||dF|| & R_wrong & 998 & $<$0.001 & $<$0.001 \\
+isic & MedSAM3 & CSR  ||dF|| & R_cf & 998 & $<$0.001 & $<$0.001 \\
+\bottomrule
+\end{tabular}

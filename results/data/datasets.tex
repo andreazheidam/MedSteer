@@ -1,0 +1,24 @@
+\begin{tabular}{lllll}
+\toprule
+dataset & brisc & busi & isic & kvasir \\
+\midrule
+modality & MRI (T1, 2D slices) & Ultrasound (2D) & Dermoscopy (RGB) & Colonoscopy (RGB video frames) \\
+splits_used & test=1000 & test=156, train=546, val=78 & test=1000 & test=200, train=700, val=100 \\
+n_images & 1000 & 780 & 1000 & 1000 \\
+positives (non-empty mask) & 860 & 647 & 1000 & 1000 \\
+negatives & 140 & 133 & 0 & 0 \\
+labels & glioma=254, meningioma=306, no_tumor=140, pituitary=300 & benign=437, malignant=210, normal=133 & lesion=1000 & polyp=1000 \\
+patients & not recorded & not recorded & not recorded & not recorded \\
+no mask file & 140 & 0 & 0 & 0 \\
+empty mask & 0 & 133 & 0 & 0 \\
+unreadable & 0 & 0 & 0 & 0 \\
+height min/med/max & 195/512/1019 & 310/474/719 & 480/2304/4519 & 352/530/1072 \\
+width min/med/max & 174/512/1149 & 190/564/1048 & 640/3072/6828 & 332/621/1920 \\
+PIL mode & L=1000 & RGB=780 & RGB=1000 & RGB=1000 \\
+dtype & uint8 & uint8 & uint8 & uint8 \\
+channels & 1=1000 & 3=780 & 3=1000 & 3=1000 \\
+intensity range & [0, 255] & [0, 255] & [0, 255] & [0, 255] \\
+per-image max min/med & 227/255 & 207/255 & 156/255 & 255/255 \\
+mask values & 0, 1, 2, 3 & 0, 255 & 0, 255 & 0, 1, 2, 3 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,53 @@
+{
+  "dataset": "kvasir",
+  "n_cases": 1000,
+  "gate": 1.0,
+  "resolution": 336,
+  "grid": 24,
+  "model_resolution": 1008,
+  "backbone": "facebook/sam3",
+  "checkpoint": "facebook/sam3",
+  "config_hash": "70d070c7c9af",
+  "prompts": [
+    {
+      "id": "anatomy",
+      "text": "colon mucosa",
+      "category": "anatomy",
+      "label": null,
+      "primary": true
+    },
+    {
+      "id": "pathology",
+      "text": "colon polyp",
+      "category": "pathology",
+      "label": null,
+      "primary": true
+    },
+    {
+      "id": "irrelevant_cat",
+      "text": "cat",
+      "category": "irrelevant",
+      "label": null,
+      "primary": true
+    },
+    {
+      "id": "wrong_medical",
+      "text": "breast lesion",
+      "category": "wrong_medical",
+      "label": null,
+      "primary": true
+    },
+    {
+      "id": "counterfactual",
+      "text": "normal colon mucosa",
+      "category": "counterfactual",
+      "label": null,
+      "primary": true
+    }
+  ],
+  "reference": "irrelevant_cat",
+  "null_prompt": "",
+  "null_condition": "empty-text control",
+  "attention": false,
+  "valid_region": "unpadded image (only our zero padding excluded; no intensity-based removal)"
+}

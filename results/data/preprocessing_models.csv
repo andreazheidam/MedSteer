@@ -1,0 +1,4 @@
+model,resolution,normalisation
+SteerViT / DINOv2-B/14,"336 px, 24x24 tokens","ImageNet mean (0.485, 0.456, 0.406), std (0.229, 0.224, 0.225) (timm config)"
+CLIP ViT-B/16 (OpenAI),"384 px, 24x24 tokens, interpolated pos. emb.","CLIP mean (0.481, 0.458, 0.408), std (0.269, 0.261, 0.276)"
+SAM3,"1008 px, 72x72 tokens, pooled 3x3 to 24x24","mean (0.5, 0.5, 0.5), std (0.5, 0.5, 0.5) (Sam3Processor)"

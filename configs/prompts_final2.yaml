@@ -1,0 +1,60 @@
+# MedSteer FINAL-2 prompt set (supervisor feedback, 2026-10-28). FROZEN: do not edit after the
+# runs start. Replaces prompts_final.yaml (which stays unchanged as the record of the v2 runs).
+# The exact strings below are sent verbatim to every model (SteerViT, CLIP, SAM3); no article,
+# no template, no per-image or per-dataset tuning. Its hash is written into every output folder.
+#
+# Categories (one specificity gap per control, never averaged):
+#   pathology      the segmentation target
+#   anatomy        surrounding anatomical context      G_context = AUROC(path) - AUROC(anatomy)
+#                  (target-vs-context contrast: the context contains the target, so this is
+#                   not a direct measure of semantic failure)
+#   irrelevant     non-medical control "cat"           G_cat     = AUROC(path) - AUROC(cat)
+#   wrong_medical  pathology of another dataset        G_wrong   = AUROC(path) - AUROC(wrong)
+#   counterfactual healthy counterpart, same context   G_cf      = AUROC(path) - AUROC(cf)
+# "car" is dropped. Wrong-medical prompts rotate the pathology strings across datasets.
+
+model:
+  checkpoint: steervit_dinov2_base.pth   # official release (HF: JonaRuthardt/SteerViT)
+  gate: 1.0
+  batch_size: 32
+  dtype: float32
+
+datasets:
+  brisc:
+    reference: irrelevant_cat
+    prompts:
+      - {id: anatomy,        text: "brain tissue",         category: anatomy}
+      - {id: pathology,      text: "brain tumor",          category: pathology}
+      - {id: irrelevant_cat, text: "cat",                  category: irrelevant}
+      - {id: wrong_medical,  text: "skin lesion",          category: wrong_medical}
+      - {id: counterfactual, text: "normal brain tissue",  category: counterfactual}
+  busi:
+    reference: irrelevant_cat
+    prompts:
+      - {id: anatomy,        text: "breast tissue",        category: anatomy}
+      - {id: pathology,      text: "breast lesion",        category: pathology}
+      - {id: irrelevant_cat, text: "cat",                  category: irrelevant}
+      - {id: wrong_medical,  text: "brain tumor",          category: wrong_medical}
+      - {id: counterfactual, text: "normal breast tissue", category: counterfactual}
+  kvasir:
+    reference: irrelevant_cat
+    prompts:
+      - {id: anatomy,        text: "colon mucosa",         category: anatomy}
+      - {id: pathology,      text: "colon polyp",          category: pathology}
+      - {id: irrelevant_cat, text: "cat",                  category: irrelevant}
+      - {id: wrong_medical,  text: "breast lesion",        category: wrong_medical}
+      - {id: counterfactual, text: "normal colon mucosa",  category: counterfactual}
+  isic:
+    reference: irrelevant_cat
+    prompts:
+      - {id: anatomy,        text: "skin",                 category: anatomy}
+      - {id: pathology,      text: "skin lesion",          category: pathology}
+      - {id: irrelevant_cat, text: "cat",                  category: irrelevant}
+      - {id: wrong_medical,  text: "colon polyp",          category: wrong_medical}
+      - {id: counterfactual, text: "normal skin",          category: counterfactual}
+
+analysis:
+  patch_threshold: 0.5
+  size_bins: 3
+  main_map: csr_abs
+  null_permutations: 1

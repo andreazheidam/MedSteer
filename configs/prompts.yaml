@@ -1,0 +1,132 @@
+# MedSteer prompt sets. FREEZE THIS FILE (commit it) BEFORE THE MAIN EVALUATION.
+# Its hash is written into every output folder so results can be traced to the prompts.
+#
+# Wording follows SteerViT's training data (referring expressions: "the red car"), so every
+# prompt is a short noun phrase starting with "the". Plain language is primary; clinical
+# terms appear as class prompts. Variants with primary: false are paraphrases, used only in
+# the paraphrase-stability analysis, never to pick the best wording.
+#
+# Categories (kept separate because they test different hypotheses):
+#   anatomy        general anatomy of the image
+#   pathology      the correct pathology, generic
+#   class          a specific diagnosis; becomes class_correct / class_wrong per case
+#   related_wrong  medically plausible but absent concept
+#   irrelevant     unrelated to the domain (negative control)
+#   nuisance       real acquisition / visual nuisance that occurs in the data
+#   contrast_pos / contrast_neg   opposing pair (lesion vs healthy tissue)
+#   negation       explicit negation ("no tumor") - tests whether negation is understood
+#   size_small / size_large       semantic size contrast, scored against GT size tertiles
+
+model:
+  checkpoint: steervit_dinov2_base.pth   # official release (HF: JonaRuthardt/SteerViT)
+  gate: 1.0                               # released model; the sanity script also checks 0
+  batch_size: 32
+  dtype: float32                          # bfloat16 is faster on A100; check sanity first
+
+datasets:
+  brisc:
+    reference: irrelevant_cat             # control prompt for specificity maps
+    prompts:
+      - {id: anatomy,          text: "the brain",            category: anatomy}
+      - {id: pathology,        text: "the brain tumor",      category: pathology}
+      - {id: pathology_p1,     text: "the tumor in the brain", category: pathology, primary: false}
+      - {id: pathology_p2,     text: "the brain lesion",     category: pathology, primary: false}
+      - {id: glioma,           text: "the glioma",           category: class, label: glioma}
+      - {id: meningioma,       text: "the meningioma",       category: class, label: meningioma}
+      - {id: pituitary,        text: "the pituitary tumor",  category: class, label: pituitary}
+      - {id: related_wrong,    text: "the stroke lesion",    category: related_wrong}
+      - {id: irrelevant_cat,   text: "the cat",              category: irrelevant}
+      - {id: irrelevant_car,   text: "the car",              category: irrelevant}
+      - {id: nuisance,         text: "the dark background",  category: nuisance}
+      - {id: contrast_pos,     text: "the tumor",            category: contrast_pos}
+      - {id: contrast_neg,     text: "the healthy brain tissue", category: contrast_neg}
+      - {id: negation,         text: "no tumor",             category: negation}
+      - {id: size_small,       text: "the small tumor",      category: size_small}
+      - {id: size_large,       text: "the large tumor",      category: size_large}
+    contrast_pairs:
+      - [contrast_pos, contrast_neg]
+      - [contrast_pos, negation]
+      - [size_small, size_large]
+      - [glioma, meningioma]
+      - [pathology, anatomy]
+
+  busi:
+    reference: irrelevant_cat
+    prompts:
+      - {id: anatomy,          text: "the breast tissue",    category: anatomy}
+      - {id: pathology,        text: "the breast lesion",    category: pathology}
+      - {id: pathology_p1,     text: "the lesion in the breast", category: pathology, primary: false}
+      - {id: pathology_p2,     text: "the breast tumor",     category: pathology, primary: false}
+      - {id: benign,           text: "the benign lesion",    category: class, label: benign}
+      - {id: malignant,        text: "the malignant lesion", category: class, label: malignant}
+      - {id: related_wrong,    text: "the lymph node",       category: related_wrong}
+      - {id: irrelevant_cat,   text: "the cat",              category: irrelevant}
+      - {id: irrelevant_car,   text: "the car",              category: irrelevant}
+      - {id: nuisance,         text: "the text annotation",  category: nuisance}
+      - {id: contrast_pos,     text: "the lesion",           category: contrast_pos}
+      - {id: contrast_neg,     text: "the healthy breast tissue", category: contrast_neg}
+      - {id: negation,         text: "no lesion",            category: negation}
+      - {id: size_small,       text: "the small lesion",     category: size_small}
+      - {id: size_large,       text: "the large lesion",     category: size_large}
+    contrast_pairs:
+      - [contrast_pos, contrast_neg]
+      - [contrast_pos, negation]
+      - [size_small, size_large]
+      - [benign, malignant]
+      - [pathology, anatomy]
+
+  # Kvasir-SEG: colonoscopy, one polyp per image, no healthy images (presence tests skip).
+  kvasir:
+    reference: irrelevant_cat
+    prompts:
+      - {id: anatomy,          text: "the colon wall",       category: anatomy}
+      - {id: pathology,        text: "the colon polyp",      category: pathology}
+      - {id: pathology_p1,     text: "the polyp in the colon", category: pathology, primary: false}
+      - {id: pathology_p2,     text: "the intestinal polyp", category: pathology, primary: false}
+      - {id: related_wrong,    text: "the ulcer",            category: related_wrong}
+      - {id: irrelevant_cat,   text: "the cat",              category: irrelevant}
+      - {id: irrelevant_car,   text: "the car",              category: irrelevant}
+      - {id: nuisance,         text: "the light reflection", category: nuisance}
+      - {id: contrast_pos,     text: "the polyp",            category: contrast_pos}
+      - {id: contrast_neg,     text: "the healthy colon wall", category: contrast_neg}
+      - {id: negation,         text: "no polyp",             category: negation}
+      - {id: size_small,       text: "the small polyp",      category: size_small}
+      - {id: size_large,       text: "the large polyp",      category: size_large}
+    contrast_pairs:
+      - [contrast_pos, contrast_neg]
+      - [contrast_pos, negation]
+      - [size_small, size_large]
+      - [pathology, anatomy]
+
+  # Sunnybrook: short-axis cardiac MRI. The target is the left ventricle, an ANATOMICAL
+  # structure present in every image, so "pathology" here means "the target structure".
+  # related_wrong is the right ventricle: a neighbouring structure that is also in the image
+  # (a stricter specificity test than an absent concept). The patient's diagnosis (healthy,
+  # hypertrophy, heart failure) is not a localised finding, so there are no class prompts.
+  sunnybrook:
+    reference: irrelevant_cat
+    prompts:
+      - {id: anatomy,          text: "the heart",            category: anatomy}
+      - {id: pathology,        text: "the left ventricle",   category: pathology}
+      - {id: pathology_p1,     text: "the left ventricle of the heart", category: pathology, primary: false}
+      - {id: pathology_p2,     text: "the left heart chamber", category: pathology, primary: false}
+      - {id: related_wrong,    text: "the right ventricle",  category: related_wrong}
+      - {id: irrelevant_cat,   text: "the cat",              category: irrelevant}
+      - {id: irrelevant_car,   text: "the car",              category: irrelevant}
+      - {id: nuisance,         text: "the dark background",  category: nuisance}
+      - {id: contrast_pos,     text: "the heart chamber",    category: contrast_pos}
+      - {id: contrast_neg,     text: "the heart muscle",     category: contrast_neg}
+      - {id: negation,         text: "no heart chamber",     category: negation}
+      - {id: size_small,       text: "the small left ventricle", category: size_small}
+      - {id: size_large,       text: "the large left ventricle", category: size_large}
+    contrast_pairs:
+      - [contrast_pos, contrast_neg]
+      - [size_small, size_large]
+      - [pathology, anatomy]
+      - [pathology, related_wrong]
+
+analysis:
+  patch_threshold: 0.5        # patch = lesion if lesion fraction >= this (fallback: > 0)
+  size_bins: 3                # dataset-specific quantile bins of lesion area (from masks only)
+  main_map: csr_abs           # map used for the headline RQ1/RQ2 tests
+  null_permutations: 1        # mask-permutation null: masks from N other cases per map

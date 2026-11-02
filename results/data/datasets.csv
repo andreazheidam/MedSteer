@@ -1,0 +1,5 @@
+dataset,modality,splits_used,n_images,positives (non-empty mask),negatives,labels,patients,no mask file,empty mask,unreadable,height min/med/max,width min/med/max,PIL mode,dtype,channels,intensity range,per-image max min/med,mask values
+brisc,"MRI (T1, 2D slices)",test=1000,1000,860,140,"glioma=254, meningioma=306, no_tumor=140, pituitary=300",not recorded,140,0,0,195/512/1019,174/512/1149,L=1000,uint8,1=1000,"[0, 255]",227/255,"0, 1, 2, 3"
+busi,Ultrasound (2D),"test=156, train=546, val=78",780,647,133,"benign=437, malignant=210, normal=133",not recorded,0,133,0,310/474/719,190/564/1048,RGB=780,uint8,3=780,"[0, 255]",207/255,"0, 255"
+isic,Dermoscopy (RGB),test=1000,1000,1000,0,lesion=1000,not recorded,0,0,0,480/2304/4519,640/3072/6828,RGB=1000,uint8,3=1000,"[0, 255]",156/255,"0, 255"
+kvasir,Colonoscopy (RGB video frames),"test=200, train=700, val=100",1000,1000,0,polyp=1000,not recorded,0,0,0,352/530/1072,332/621/1920,RGB=1000,uint8,3=1000,"[0, 255]",255/255,"0, 1, 2, 3"

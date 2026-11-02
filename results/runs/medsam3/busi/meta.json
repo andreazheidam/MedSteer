@@ -1,0 +1,62 @@
+{
+  "dataset": "busi",
+  "n_cases": 780,
+  "gate": 1.0,
+  "resolution": 336,
+  "grid": 24,
+  "model_resolution": 1008,
+  "backbone": "MedSAM3 (SAM3 + LoRA)",
+  "checkpoint": "facebook/sam3 + MedSAM3 LoRA",
+  "lora": {
+    "file": "~/medsteer/medsam3_lora/best_lora_weights.pt",
+    "sha256_12": "499e638bb7c5",
+    "config": "~/MedSAM3/configs/full_lora_config.yaml",
+    "rank": 16,
+    "alpha": 32,
+    "tensors_loaded": 916,
+    "nonzero_tensors": 905
+  },
+  "config_hash": "70d070c7c9af",
+  "prompts": [
+    {
+      "id": "anatomy",
+      "text": "breast tissue",
+      "category": "anatomy",
+      "label": null,
+      "primary": true
+    },
+    {
+      "id": "pathology",
+      "text": "breast lesion",
+      "category": "pathology",
+      "label": null,
+      "primary": true
+    },
+    {
+      "id": "irrelevant_cat",
+      "text": "cat",
+      "category": "irrelevant",
+      "label": null,
+      "primary": true
+    },
+    {
+      "id": "wrong_medical",
+      "text": "brain tumor",
+      "category": "wrong_medical",
+      "label": null,
+      "primary": true
+    },
+    {
+      "id": "counterfactual",
+      "text": "normal breast tissue",
+      "category": "counterfactual",
+      "label": null,
+      "primary": true
+    }
+  ],
+  "reference": "irrelevant_cat",
+  "null_prompt": "",
+  "null_condition": "empty-text control",
+  "attention": false,
+  "valid_region": "unpadded image (only our zero padding excluded; no intensity-based removal)"
+}

@@ -1,0 +1,65 @@
+dataset,model,map,none,empty text,anatomy,pathology,cat,wrong-medical,counterfactual
+brisc,BiomedCLIP,output shift,,,0.17,0.617,0.297,0.204,0.046
+brisc,BiomedCLIP,prompted map,,0.077,0.045,0.282,0.089,0.082,0.017
+brisc,CLIP,output shift,,,0.558,0.583,0.709,0.619,0.577
+brisc,CLIP,prompted map,,0.333,0.512,0.54,0.523,0.507,0.534
+brisc,DINOv2,CLS attention,0.809,,,,,,
+brisc,DINOv2,feature norm,0.108,,,,,,
+brisc,DINOv2,salience,0.642,,,,,,
+brisc,MedSAM3,CSR  ||dF||,,,0.739,0.758,0.728,0.754,0.698
+brisc,MedSAM3,output shift,,,0.73,0.915,0.642,0.955,0.959
+brisc,MedSAM3,prompted map,,0.969,0.977,0.994,0.929,0.997,0.994
+brisc,SAM3,CSR  ||dF||,,,0.469,0.825,0.576,0.285,0.614
+brisc,SAM3,output shift,,,0.442,0.279,0.862,0.866,0.454
+brisc,SAM3,prompted map,,0.996,0.931,0.736,0.987,0.984,0.816
+brisc,SteerViT,CSR  ||dF||,,,0.05,0.05,0.066,0.074,0.048
+brisc,SteerViT,DSE  w^T dF,,,0.865,0.829,0.634,0.796,0.843
+brisc,SteerViT,prompted map,0.814,,0.97,0.984,0.798,0.96,0.975
+busi,BiomedCLIP,output shift,,,0.413,0.521,0.146,0.568,0.279
+busi,BiomedCLIP,prompted map,,0.267,0.251,0.406,0.108,0.371,0.157
+busi,CLIP,output shift,,,0.338,0.395,0.553,0.513,0.343
+busi,CLIP,prompted map,,0.472,0.338,0.379,0.528,0.506,0.343
+busi,DINOv2,CLS attention,0.776,,,,,,
+busi,DINOv2,feature norm,0.287,,,,,,
+busi,DINOv2,salience,0.887,,,,,,
+busi,MedSAM3,CSR  ||dF||,,,0.335,0.352,0.52,0.285,0.397
+busi,MedSAM3,output shift,,,0.983,0.992,0.944,0.629,0.918
+busi,MedSAM3,prompted map,,0.995,0.997,0.998,0.994,0.996,0.997
+busi,SAM3,CSR  ||dF||,,,0.395,0.387,0.656,0.468,0.774
+busi,SAM3,output shift,,,0.113,0.778,0.503,0.725,0.07
+busi,SAM3,prompted map,,0.975,0.959,0.977,0.943,0.984,0.956
+busi,SteerViT,CSR  ||dF||,,,0.071,0.096,0.081,0.071,0.1
+busi,SteerViT,DSE  w^T dF,,,0.812,0.872,0.93,0.899,0.669
+busi,SteerViT,prompted map,0.901,,0.986,0.986,0.986,0.988,0.98
+isic,BiomedCLIP,output shift,,,0.303,0.714,0.43,0.588,0.358
+isic,BiomedCLIP,prompted map,,0.264,0.165,0.421,0.245,0.394,0.223
+isic,CLIP,output shift,,,0.376,0.648,0.746,0.832,0.378
+isic,CLIP,prompted map,,0.576,0.397,0.691,0.745,0.852,0.399
+isic,DINOv2,CLS attention,0.862,,,,,,
+isic,DINOv2,feature norm,0.239,,,,,,
+isic,DINOv2,salience,0.775,,,,,,
+isic,MedSAM3,CSR  ||dF||,,,0.854,0.846,0.313,0.83,0.864
+isic,MedSAM3,output shift,,,0.984,0.983,0.971,0.994,0.661
+isic,MedSAM3,prompted map,,0.999,0.999,0.999,0.999,0.999,0.999
+isic,SAM3,CSR  ||dF||,,,0.54,0.858,0.284,0.4,0.382
+isic,SAM3,output shift,,,0.006,0.027,0.021,0.866,0.004
+isic,SAM3,prompted map,,0.997,0.172,0.898,0.995,0.997,0.088
+isic,SteerViT,CSR  ||dF||,,,0.046,0.05,0.046,0.036,0.047
+isic,SteerViT,DSE  w^T dF,,,0.598,0.718,0.715,0.926,0.577
+isic,SteerViT,prompted map,0.808,,0.987,0.982,0.992,0.99,0.989
+kvasir,BiomedCLIP,output shift,,,0.279,0.518,0.148,0.74,0.151
+kvasir,BiomedCLIP,prompted map,,0.51,0.268,0.518,0.195,0.704,0.148
+kvasir,CLIP,output shift,,,0.54,0.531,0.515,0.653,0.556
+kvasir,CLIP,prompted map,,0.498,0.531,0.532,0.512,0.649,0.561
+kvasir,DINOv2,CLS attention,0.772,,,,,,
+kvasir,DINOv2,feature norm,0.352,,,,,,
+kvasir,DINOv2,salience,0.632,,,,,,
+kvasir,MedSAM3,CSR  ||dF||,,,0.375,0.338,0.427,0.617,0.572
+kvasir,MedSAM3,output shift,,,0.282,0.998,0.987,0.842,0.437
+kvasir,MedSAM3,prompted map,,0.997,0.995,0.999,0.999,0.996,0.994
+kvasir,SAM3,CSR  ||dF||,,,0.299,0.302,0.512,0.778,0.731
+kvasir,SAM3,output shift,,,0.946,0.921,0.199,0.355,0.398
+kvasir,SAM3,prompted map,,0.987,0.984,0.979,0.958,0.848,0.875
+kvasir,SteerViT,CSR  ||dF||,,,0.201,0.178,0.262,0.214,0.206
+kvasir,SteerViT,DSE  w^T dF,,,0.756,0.855,0.516,0.431,0.656
+kvasir,SteerViT,prompted map,0.752,,0.983,0.989,0.973,0.791,0.984

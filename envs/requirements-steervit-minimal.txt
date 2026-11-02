@@ -1,0 +1,11 @@
+# Official SteerViT package (pulls torch>=2.7, timm, transformers<5, RoBERTa via HF)
+steervit @ git+https://github.com/JonaRuthardt/SteerViT.git
+numpy
+scipy
+pandas
+scikit-learn
+matplotlib
+pillow
+pyyaml
+scikit-image
+pytest

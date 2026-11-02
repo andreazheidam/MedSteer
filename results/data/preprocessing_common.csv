@@ -1,0 +1,9 @@
+step,setting
+Grayscale to RGB,"single channel replicated to 3 channels (BRISC, BUSI); RGB kept"
+Intensity rescaling,none for 8-bit images; 16-bit/float images: per-image min-max to 0-255
+Clipping,none
+Padding,"zero-padded to a square, image centred (value 0)"
+Image resize,"PIL bicubic, to each model's input resolution"
+Mask resize,"nearest neighbour to 336 x 336 (union of all mask files), metrics at 336 px"
+Patch grid,24 x 24 for every model (maps area-pooled to this grid)
+Evaluation region,all pixels of the original unpadded image; only our zero padding is excluded. Defined from image size alone (independent of the ground truth and of intensities); dark regions and the Kvasir position overlay stay in

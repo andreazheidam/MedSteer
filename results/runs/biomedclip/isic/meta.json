@@ -1,0 +1,53 @@
+{
+  "dataset": "isic",
+  "n_cases": 1000,
+  "gate": 1.0,
+  "resolution": 336,
+  "grid": 24,
+  "model_resolution": 384,
+  "backbone": "hf-hub:microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224",
+  "checkpoint": "hf-hub:microsoft/BiomedCLIP-PubMedBERT_256-vit_base_patch16_224",
+  "config_hash": "70d070c7c9af",
+  "prompts": [
+    {
+      "id": "anatomy",
+      "text": "skin",
+      "category": "anatomy",
+      "label": null,
+      "primary": true
+    },
+    {
+      "id": "pathology",
+      "text": "skin lesion",
+      "category": "pathology",
+      "label": null,
+      "primary": true
+    },
+    {
+      "id": "irrelevant_cat",
+      "text": "cat",
+      "category": "irrelevant",
+      "label": null,
+      "primary": true
+    },
+    {
+      "id": "wrong_medical",
+      "text": "colon polyp",
+      "category": "wrong_medical",
+      "label": null,
+      "primary": true
+    },
+    {
+      "id": "counterfactual",
+      "text": "normal skin",
+      "category": "counterfactual",
+      "label": null,
+      "primary": true
+    }
+  ],
+  "reference": "irrelevant_cat",
+  "null_prompt": "",
+  "null_condition": "empty-text control",
+  "attention": false,
+  "valid_region": "unpadded image (only our zero padding excluded; no intensity-based removal)"
+}
