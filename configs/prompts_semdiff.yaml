@@ -1,0 +1,98 @@
+# MedSteer semantic-differential prompt set (follow-up, 2026-11). FROZEN once the runs start.
+#
+# Three synonym paraphrases per semantic category (supervisor follow-up, Sec. 1.4).
+# Paraphrase 1 of every category is IDENTICAL (id and text) to configs/prompts_final2.yaml, so
+# the single-prompt results of this run must reproduce the paper tables exactly (sanity check).
+# Paraphrases 2-3 have `primary: false`; evaluation groups prompts by `category`.
+#
+#   pathology       target p+
+#   anatomy         context control          D_context
+#   irrelevant      non-medical control      D_irrelevant  ("cat")
+#   wrong_medical   pathology of another ds  D_wrong
+#   counterfactual  healthy counterpart      D_counter
+#
+# NOTE (to discuss): BUSI context paraphrase 3 "normal breast tissue" is the same string as BUSI
+# counterfactual paraphrase 1. Kept verbatim from the follow-up table for now.
+
+model:
+  checkpoint: steervit_dinov2_base.pth
+  gate: 1.0
+  batch_size: 32
+  dtype: float32
+
+datasets:
+  brisc:
+    reference: irrelevant_cat
+    prompts:
+      - {id: pathology,         text: "brain tumor",                    category: pathology}
+      - {id: pathology_p2,      text: "tumor in the brain",             category: pathology,      primary: false}
+      - {id: pathology_p3,      text: "intracranial tumor",             category: pathology,      primary: false}
+      - {id: anatomy,           text: "brain tissue",                   category: anatomy}
+      - {id: anatomy_p2,        text: "cerebral tissue",                category: anatomy,        primary: false}
+      - {id: anatomy_p3,        text: "brain parenchyma",               category: anatomy,        primary: false}
+      - {id: counterfactual,    text: "normal brain tissue",            category: counterfactual}
+      - {id: counterfactual_p2, text: "healthy brain tissue",           category: counterfactual, primary: false}
+      - {id: counterfactual_p3, text: "non-tumorous brain tissue",      category: counterfactual, primary: false}
+      - {id: wrong_medical,     text: "skin lesion",                    category: wrong_medical}
+      - {id: wrong_medical_p2,  text: "lesion of the skin",             category: wrong_medical,  primary: false}
+      - {id: wrong_medical_p3,  text: "cutaneous lesion",               category: wrong_medical,  primary: false}
+      - {id: irrelevant_cat,    text: "cat",                            category: irrelevant}
+      - {id: irrelevant_cat_p2, text: "domestic cat",                   category: irrelevant,     primary: false}
+      - {id: irrelevant_cat_p3, text: "feline animal",                  category: irrelevant,     primary: false}
+  busi:
+    reference: irrelevant_cat
+    prompts:
+      - {id: pathology,         text: "breast lesion",                  category: pathology}
+      - {id: pathology_p2,      text: "lesion in the breast",           category: pathology,      primary: false}
+      - {id: pathology_p3,      text: "breast mass",                    category: pathology,      primary: false}
+      - {id: anatomy,           text: "breast tissue",                  category: anatomy}
+      - {id: anatomy_p2,        text: "mammary tissue",                 category: anatomy,        primary: false}
+      - {id: anatomy_p3,        text: "normal breast tissue",           category: anatomy,        primary: false}
+      - {id: counterfactual,    text: "normal breast tissue",           category: counterfactual}
+      - {id: counterfactual_p2, text: "healthy breast tissue",          category: counterfactual, primary: false}
+      - {id: counterfactual_p3, text: "non-lesional breast tissue",     category: counterfactual, primary: false}
+      - {id: wrong_medical,     text: "brain tumor",                    category: wrong_medical}
+      - {id: wrong_medical_p2,  text: "tumor in the brain",             category: wrong_medical,  primary: false}
+      - {id: wrong_medical_p3,  text: "intracranial tumor",             category: wrong_medical,  primary: false}
+      - {id: irrelevant_cat,    text: "cat",                            category: irrelevant}
+      - {id: irrelevant_cat_p2, text: "domestic cat",                   category: irrelevant,     primary: false}
+      - {id: irrelevant_cat_p3, text: "feline animal",                  category: irrelevant,     primary: false}
+  kvasir:
+    reference: irrelevant_cat
+    prompts:
+      - {id: pathology,         text: "colon polyp",                    category: pathology}
+      - {id: pathology_p2,      text: "polyp in the colon",             category: pathology,      primary: false}
+      - {id: pathology_p3,      text: "colorectal polyp",               category: pathology,      primary: false}
+      - {id: anatomy,           text: "colon mucosa",                   category: anatomy}
+      - {id: anatomy_p2,        text: "colonic mucosa",                 category: anatomy,        primary: false}
+      - {id: anatomy_p3,        text: "colon lining",                   category: anatomy,        primary: false}
+      - {id: counterfactual,    text: "normal colon mucosa",            category: counterfactual}
+      - {id: counterfactual_p2, text: "healthy colon mucosa",           category: counterfactual, primary: false}
+      - {id: counterfactual_p3, text: "non-polypoid colon mucosa",      category: counterfactual, primary: false}
+      - {id: wrong_medical,     text: "breast lesion",                  category: wrong_medical}
+      - {id: wrong_medical_p2,  text: "lesion in the breast",           category: wrong_medical,  primary: false}
+      - {id: wrong_medical_p3,  text: "breast mass",                    category: wrong_medical,  primary: false}
+      - {id: irrelevant_cat,    text: "cat",                            category: irrelevant}
+      - {id: irrelevant_cat_p2, text: "domestic cat",                   category: irrelevant,     primary: false}
+      - {id: irrelevant_cat_p3, text: "feline animal",                  category: irrelevant,     primary: false}
+  isic:
+    reference: irrelevant_cat
+    prompts:
+      - {id: pathology,         text: "skin lesion",                    category: pathology}
+      - {id: pathology_p2,      text: "lesion of the skin",             category: pathology,      primary: false}
+      - {id: pathology_p3,      text: "cutaneous lesion",               category: pathology,      primary: false}
+      - {id: anatomy,           text: "skin",                           category: anatomy}
+      - {id: anatomy_p2,        text: "skin tissue",                    category: anatomy,        primary: false}
+      - {id: anatomy_p3,        text: "cutaneous tissue",               category: anatomy,        primary: false}
+      - {id: counterfactual,    text: "normal skin",                    category: counterfactual}
+      - {id: counterfactual_p2, text: "healthy skin",                   category: counterfactual, primary: false}
+      - {id: counterfactual_p3, text: "non-lesional skin",              category: counterfactual, primary: false}
+      - {id: wrong_medical,     text: "colon polyp",                    category: wrong_medical}
+      - {id: wrong_medical_p2,  text: "polyp in the colon",             category: wrong_medical,  primary: false}
+      - {id: wrong_medical_p3,  text: "colorectal polyp",               category: wrong_medical,  primary: false}
+      - {id: irrelevant_cat,    text: "cat",                            category: irrelevant}
+      - {id: irrelevant_cat_p2, text: "domestic cat",                   category: irrelevant,     primary: false}
+      - {id: irrelevant_cat_p3, text: "feline animal",                  category: irrelevant,     primary: false}
+
+analysis:
+  controls: [anatomy, counterfactual, wrong_medical, irrelevant]

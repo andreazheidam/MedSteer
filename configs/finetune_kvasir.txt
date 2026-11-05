@@ -1,0 +1,8 @@
+# One fine-tuning run per line: <run-name> <arguments for scripts/finetune.py>
+# Line k (0-based, comments and blank lines skipped) = SLURM array task k in slurm/finetune.sh.
+# "frozen" is special: no training, only the test-split extraction of the pretrained model (baseline).
+frozen
+kvasir_target            --loss target
+kvasir_spec_hard         --loss spec --spec-mode hard --margin 0.5 --lambda-spec 1.0
+kvasir_spec_mean         --loss spec --spec-mode mean --margin 0.5 --lambda-spec 1.0
+kvasir_spec_hard_noctx   --loss spec --spec-mode hard --margin 0.5 --lambda-spec 1.0 --controls counterfactual wrong_medical irrelevant
